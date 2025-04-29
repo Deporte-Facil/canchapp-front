@@ -1,10 +1,20 @@
+"use client";
 import Image from "next/image";
 import styles from "./page.module.css";
+import { Button } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
+        <h1>PORTAL DE LA CACHAPP</h1>
+        <button onClick={ () => router.push('/jugar')}> JUGADOR </button>
+        <button onClick={() => router.push('/gestion')}> PROPIETARIO </button>
+        <Button variant="outlined"> BOTON CULIAO MUIII</Button>
+        <Button variant="contained"> BOTON CULIAO MUIII</Button>
         <Image
           className={styles.logo}
           src="/next.svg"
