@@ -13,8 +13,8 @@ export default function Home() {
         <h1>PORTAL DE LA CACHAPP</h1>
         <button onClick={ () => router.push('/jugar')}> JUGADOR </button>
         <button onClick={() => router.push('/gestion')}> PROPIETARIO </button>
-        <Button variant="outlined"> BOTON CULIAO MUIII</Button>
-        <Button variant="contained"> BOTON CULIAO MUIII</Button>
+        <Button variant="outlined"> BOTON  MUIII</Button>
+        <Button variant="contained"> BOTON  MUIII</Button>
         <Image
           className={styles.logo}
           src="/next.svg"
