@@ -13,9 +13,8 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
     const handleDrawerButtonClick = (text: string) => {
         switch (text) {
-            case 'WEA 1':
-                alert("wea 1")
-                //router.push('/main');
+            case 'Arrendar':
+                router.push('/jugar/arrendar');
                 break;
             case 'WEA 2':
                 alert("wea 2")
@@ -58,7 +57,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <List>
-                {['WEA 1', 'WEA 2', 'WEA 3', 'WEA 4'].map((text, index) => (
+                {['Arrendar', 'WEA 2', 'WEA 3', 'WEA 4'].map((text, index) => (
                     <ListItem key={text} disablePadding onClick={() => handleDrawerButtonClick(text)}>
                         <ListItemButton>
                             <ListItemIcon>
