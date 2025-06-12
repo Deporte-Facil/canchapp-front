@@ -33,12 +33,12 @@ const Layout = ({ children }: { children: ReactNode }) => {
         alert("MODIFICAR EQUIPO");
         //router.push('/main/reports');
         break;
-      case "WEA 3":
-        //alert("wea 3")
+      case "COSA 3":
+        //alert("COSA 3")
         router.push("/main/students");
         break;
-      case "WEA 4":
-        alert("wea 4");
+      case "COSA 4":
+        alert("COSA 4");
         //router.push('/main/table');
         break;
       default:

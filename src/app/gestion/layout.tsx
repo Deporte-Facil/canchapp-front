@@ -27,19 +27,16 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const handleDrawerButtonClick = (text: string) => {
     switch (text) {
       case "Registrar Recinto":
-        alert("Registrar Recinto");
         router.push("/gestion/recintos");
         break;
-      case "WEA 2":
-        alert("wea 2");
+      case "COSA 2":
         //router.push('/main/reports');
         break;
-      case "WEA 3":
-        //alert("wea 3")
+      case "COSA 3":
+
         router.push("/main/students");
         break;
-      case "WEA 4":
-        alert("wea 4");
+      case "COSA 4":
         //router.push('/main/table');
         break;
       default:
