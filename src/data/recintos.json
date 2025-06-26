@@ -3,6 +3,7 @@
     {
       "nombre": "Complejo Deportivo El Océano",
       "tipoDeporte": "Fútbol",
+      "modalidad": "equipo",
       "jugadoresMax": "14",
       "costo": "35000",
       "descripcion": "Modernas canchas de pasto sintético con iluminación LED de última generación. Ideal para partidos con amigos después del trabajo.",
@@ -26,6 +27,7 @@
     {
       "nombre": "Club de Tenis y Pádel Jardín del Mar",
       "tipoDeporte": "Tenis",
+      "modalidad": "solitario",
       "jugadoresMax": "4",
       "costo": "18000",
       "descripcion": "Disfruta del deporte blanco en un entorno tranquilo y natural. Contamos con canchas de arcilla y pádel de cristal.",
@@ -60,6 +62,7 @@
     {
       "nombre": "Gimnasio Municipal de Quilpué",
       "tipoDeporte": "Básquetbol",
+      "modalidad": "equipo",
       "jugadoresMax": "10",
       "costo": "20000",
       "descripcion": "Cancha interior de madera pulida, perfecta para básquetbol y vóleibol. Graderías disponibles para público.",
@@ -83,6 +86,7 @@
     {
       "nombre": "Dunas de Concón - Cancha Vóley Playa",
       "tipoDeporte": "Vóleibol Playa",
+      "modalidad": "equipo",
       "jugadoresMax": "8",
       "costo": "12000",
       "descripcion": "Arrienda nuestra cancha de vóley playa con una vista increíble. ¡Perfecta para jugar al atardecer!",
