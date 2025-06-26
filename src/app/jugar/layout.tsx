@@ -104,11 +104,14 @@ const Layout = ({ children }: { children: ReactNode }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Sistema de Seguimientos
+            Canchapp
           </Typography>
           <Button color="inherit">Cerrar sesión</Button>
           <Button onClick={() => router.push("/")} color="inherit">
-            VOLVER AL PORTAL
+            Volver al portal
+          </Button>
+          <Button onClick={() => router.push("/")} color="inherit">
+            Usuario
           </Button>
         </Toolbar>
       </AppBar>
