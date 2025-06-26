@@ -1,0 +1,107 @@
+{
+  "recintos": [
+    {
+      "nombre": "Complejo Deportivo El Océano",
+      "tipoDeporte": "Fútbol",
+      "jugadoresMax": "14",
+      "costo": "35000",
+      "descripcion": "Modernas canchas de pasto sintético con iluminación LED de última generación. Ideal para partidos con amigos después del trabajo.",
+      "materiales": "Balones profesionales, conos y estacas para entrenamiento.",
+      "ubicacion": "Valparaíso",
+      "estacionamiento": true,
+      "petos": true,
+      "arbitros": false,
+      "servicios": ["Vestuarios", "Duchas", "Quiosco", "Baños"],
+      "fechaDisponible": "2025-06-26T10:00:00.000Z",
+      "imagen": "/images/dummy/futbol_valpo.jpg",
+      "canchas": [
+        {
+          "tipoCancha": "Fútbol 7 (Pasto Sintético)",
+          "cantidad": 2,
+          "horariosDisponibles": "10:00,11:30,13:00,18:00,19:30,21:00",
+          "materialesCancha": "Arcos profesionales, balones."
+        }
+      ]
+    },
+    {
+      "nombre": "Club de Tenis y Pádel Jardín del Mar",
+      "tipoDeporte": "Tenis",
+      "jugadoresMax": "4",
+      "costo": "18000",
+      "descripcion": "Disfruta del deporte blanco en un entorno tranquilo y natural. Contamos con canchas de arcilla y pádel de cristal.",
+      "materiales": "Arriendo de raquetas y venta de pelotas.",
+      "ubicacion": "Viña del Mar",
+      "estacionamiento": true,
+      "petos": false,
+      "arbitros": true,
+      "servicios": [
+        "Vestuarios",
+        "Zona de descanso",
+        "Cafetería",
+        "Estacionamiento"
+      ],
+      "fechaDisponible": "2025-06-27T09:00:00.000Z",
+      "imagen": "/images/dummy/tenis_vina.jpg",
+      "canchas": [
+        {
+          "tipoCancha": "Tenis (Arcilla)",
+          "cantidad": 3,
+          "horariosDisponibles": "09:00,10:00,11:00,12:00,15:00,16:00",
+          "materialesCancha": "Redes reglamentarias."
+        },
+        {
+          "tipoCancha": "Pádel (Cristal)",
+          "cantidad": 2,
+          "horariosDisponibles": "17:00,18:00,19:00,20:00,21:00",
+          "materialesCancha": "Paredes de cristal, iluminación."
+        }
+      ]
+    },
+    {
+      "nombre": "Gimnasio Municipal de Quilpué",
+      "tipoDeporte": "Básquetbol",
+      "jugadoresMax": "10",
+      "costo": "20000",
+      "descripcion": "Cancha interior de madera pulida, perfecta para básquetbol y vóleibol. Graderías disponibles para público.",
+      "materiales": "Aros retractiles, tablero electrónico.",
+      "ubicacion": "Quilpué",
+      "estacionamiento": true,
+      "petos": true,
+      "arbitros": false,
+      "servicios": ["Baños", "Graderías", "Agua potable"],
+      "fechaDisponible": "2025-07-01T14:00:00.000Z",
+      "imagen": "/images/dummy/basquetbol_quilpue.jpg",
+      "canchas": [
+        {
+          "tipoCancha": "Multiuso (Madera)",
+          "cantidad": 1,
+          "horariosDisponibles": "14:00,15:00,16:00,17:00",
+          "materialesCancha": "Aros de básquetbol, postes de vóleibol."
+        }
+      ]
+    },
+    {
+      "nombre": "Dunas de Concón - Cancha Vóley Playa",
+      "tipoDeporte": "Vóleibol Playa",
+      "jugadoresMax": "8",
+      "costo": "12000",
+      "descripcion": "Arrienda nuestra cancha de vóley playa con una vista increíble. ¡Perfecta para jugar al atardecer!",
+      "materiales": "Balón de vóley playa y delimitadores de cancha.",
+      "ubicacion": "Concón",
+      "estacionamiento": false,
+      "petos": false,
+      "arbitros": false,
+      "servicios": ["Duchas al aire libre", "Zona de descanso"],
+      "fechaDisponible": "2025-06-28T15:00:00.000Z",
+      "imagen": "/images/dummy/voley_concon.jpg",
+      "canchas": [
+        {
+          "tipoCancha": "Arena",
+          "cantidad": 1,
+          "horariosDisponibles": "15:00,16:00,17:00,18:00,19:00",
+          "materialesCancha": "Red profesional, balón."
+        }
+      ]
+    }
+  ]
+}
