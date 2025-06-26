@@ -33,9 +33,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
         alert("MODIFICAR EQUIPO");
         //router.push('/main/reports');
         break;
-      case "COSA 3":
+      case "GESTIÓN USUARIO":
         //alert("COSA 3")
-        router.push("/main/students");
+        router.push("/jugar/user");
         break;
       case "COSA 4":
         alert("COSA 4");
@@ -70,7 +70,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["ARRENDAR", "GESTIONAR EQUIPO", "COSA 3", "COSA 4"].map(
+        {["ARRENDAR", "GESTIONAR EQUIPO", "GESTIÓN USUARIO", "COSA 4"].map(
           (text, index) => (
             <ListItem
               key={text}
@@ -109,9 +109,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
           <Button color="inherit">Cerrar sesión</Button>
           <Button onClick={() => router.push("/")} color="inherit">
             Volver al portal
-          </Button>
-          <Button onClick={() => router.push("/")} color="inherit">
-            Usuario
           </Button>
         </Toolbar>
       </AppBar>
