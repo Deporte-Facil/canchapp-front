@@ -19,10 +19,10 @@ import {
   Typography,
   Alert,
 } from "@mui/material";
-import ModalArriendo from "../../lib/ModalArriendo"; // Asegúrate que la ruta sea correcta
+import ModalArriendo from "../../lib/ModalArriendo";
 import data from "@/data/recintos.json";
 
-// --- INTERFACES (Sin cambios) ---
+// --- INTERFACES ---
 interface Cancha {
   tipoCancha: string;
   cantidad: number;
@@ -45,9 +45,10 @@ interface Recinto {
   fechaDisponible: Date;
   imagen: string;
   canchas: Cancha[];
+  modalidad?: "equipo" | "solitario" | "ambos";
 }
 
-// --- NUEVO COMPONENTE DE PAGO ---
+// --- COMPONENTE DE PAGO ---
 interface PaymentComponentProps {
   details: {
     recinto: string;
@@ -90,18 +91,10 @@ function PaymentComponent({
           gap: 2,
         }}
       >
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={onPaymentSuccess} // Simulamos un pago exitoso
-        >
+        <Button variant="contained" color="primary" onClick={onPaymentSuccess}>
           Pagar con Tarjeta de Crédito/Débito (Simulado)
         </Button>
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={onPaymentSuccess} // Simulamos un pago exitoso
-        >
+        <Button variant="contained" color="secondary" onClick={onPaymentSuccess}>
           Pagar con PayPal (Simulado)
         </Button>
         <Button
@@ -119,26 +112,19 @@ function PaymentComponent({
 
 // --- COMPONENTE PRINCIPAL ---
 export default function ArrendarRecinto() {
-  // --- ESTADOS ---
   const { recintos } = data;
+
   const [tipoDeporte, setTipoDeporte] = useState<string>("");
   const [ubicacion, setUbicacion] = useState<string>("");
+  const [modalidad, setModalidad] = useState<"solitario" | "equipo" | "">("");
+
   const [modalOpen, setModalOpen] = useState(false);
-  const [recintoSeleccionado, setRecintoSeleccionado] =
-    useState<Recinto | null>(null);
+  const [recintoSeleccionado, setRecintoSeleccionado] = useState<Recinto | null>(null);
 
-  // <-- INICIO DE CAMBIOS EN ESTADOS -->
-  type ViewState = "lista" | "pagando" | "confirmado";
-  const [viewState, setViewState] = useState<ViewState>("lista");
-  const [arrendamientoDetails, setArrendamientoDetails] = useState<any | null>(
-    null
-  );
-  const [mensajeConfirmacion, setMensajeConfirmacion] = useState<string | null>(
-    null
-  );
-  // <-- FIN DE CAMBIOS EN ESTADOS -->
+  const [viewState, setViewState] = useState<"lista" | "pagando" | "confirmado">("lista");
+  const [arrendamientoDetails, setArrendamientoDetails] = useState<any | null>(null);
+  const [mensajeConfirmacion, setMensajeConfirmacion] = useState<string | null>(null);
 
-  // --- DATOS MEMOIZADOS (Sin cambios) ---
   const deportesDisponibles = useMemo(
     () => [...new Set(recintos.map((r) => r.tipoDeporte))],
     [recintos]
@@ -156,19 +142,16 @@ export default function ArrendarRecinto() {
   }, [recintos, tipoDeporte]);
 
   const recintosFiltrados = useMemo(() => {
-    if (!tipoDeporte && !ubicacion) {
-      return recintos;
-    }
     return recintos.filter((recinto) => {
-      const matchDeporte = tipoDeporte
-        ? recinto.tipoDeporte === tipoDeporte
-        : true;
+      const matchDeporte = tipoDeporte ? recinto.tipoDeporte === tipoDeporte : true;
       const matchUbicacion = ubicacion ? recinto.ubicacion === ubicacion : true;
-      return matchDeporte && matchUbicacion;
+      const matchModalidad = modalidad
+        ? recinto.modalidad === modalidad || recinto.modalidad === "ambos"
+        : true;
+      return matchDeporte && matchUbicacion && matchModalidad;
     });
-  }, [recintos, tipoDeporte, ubicacion]);
+  }, [recintos, tipoDeporte, ubicacion, modalidad]);
 
-  // --- MANEJADORES DE EVENTOS ---
   const handleDeporteChange = (event: SelectChangeEvent) => {
     setTipoDeporte(event.target.value as string);
     setUbicacion("");
@@ -176,6 +159,10 @@ export default function ArrendarRecinto() {
 
   const handleUbicacionChange = (event: SelectChangeEvent) => {
     setUbicacion(event.target.value as string);
+  };
+
+  const handleModalidadChange = (event: SelectChangeEvent) => {
+    setModalidad(event.target.value as "solitario" | "equipo" | "");
   };
 
   const handleOpenModal = (recinto: Recinto) => {
@@ -188,7 +175,6 @@ export default function ArrendarRecinto() {
     setRecintoSeleccionado(null);
   };
 
-  // <-- FUNCIÓN MODIFICADA -->
   const handleConfirmArrendamiento = (details: {
     recinto: string;
     fecha: string;
@@ -199,7 +185,6 @@ export default function ArrendarRecinto() {
     handleCloseModal();
   };
 
-  // <-- NUEVAS FUNCIONES PARA EL FLUJO DE PAGO -->
   const handlePaymentSuccess = () => {
     setMensajeConfirmacion(
       `¡Pago exitoso y arriendo confirmado! Recinto: ${arrendamientoDetails.recinto} para el ${arrendamientoDetails.fecha} a las ${arrendamientoDetails.hora}.`
@@ -212,10 +197,9 @@ export default function ArrendarRecinto() {
     setArrendamientoDetails(null);
   };
 
-  // --- RENDERIZACIÓN CONDICIONAL ---
   return (
     <Box sx={{ padding: { xs: 1, sm: 2, md: 3 } }}>
-      {/* --- VISTA 1: LISTA DE RECINTOS --- */}
+      {/* Vista Lista */}
       {viewState === "lista" && (
         <>
           <Typography variant="h4" component="h1" gutterBottom>
@@ -231,9 +215,7 @@ export default function ArrendarRecinto() {
             }}
           >
             <FormControl fullWidth>
-              <InputLabel id="deporte-select-label">
-                Selecciona un deporte
-              </InputLabel>
+              <InputLabel id="deporte-select-label">Selecciona un deporte</InputLabel>
               <Select
                 labelId="deporte-select-label"
                 value={tipoDeporte}
@@ -251,13 +233,8 @@ export default function ArrendarRecinto() {
               </Select>
             </FormControl>
 
-            <FormControl
-              fullWidth
-              disabled={!tipoDeporte && deportesDisponibles.length > 0}
-            >
-              <InputLabel id="ubicacion-select-label">
-                Selecciona una ubicación
-              </InputLabel>
+            <FormControl fullWidth disabled={!tipoDeporte}>
+              <InputLabel id="ubicacion-select-label">Selecciona una ubicación</InputLabel>
               <Select
                 labelId="ubicacion-select-label"
                 value={ubicacion}
@@ -272,6 +249,22 @@ export default function ArrendarRecinto() {
                     {loc}
                   </MenuItem>
                 ))}
+              </Select>
+            </FormControl>
+
+            <FormControl fullWidth>
+              <InputLabel id="modalidad-select-label">Modalidad</InputLabel>
+              <Select
+                labelId="modalidad-select-label"
+                value={modalidad}
+                label="Modalidad"
+                onChange={handleModalidadChange}
+              >
+                <MenuItem value="">
+                  <em>Todas las modalidades</em>
+                </MenuItem>
+                <MenuItem value="solitario">Solitario</MenuItem>
+                <MenuItem value="equipo">Equipo</MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -290,9 +283,7 @@ export default function ArrendarRecinto() {
               <TableBody>
                 {recintosFiltrados.map((recinto) => (
                   <TableRow key={recinto.nombre} hover>
-                    <TableCell component="th" scope="row">
-                      {recinto.nombre}
-                    </TableCell>
+                    <TableCell component="th" scope="row">{recinto.nombre}</TableCell>
                     <TableCell>{recinto.tipoDeporte}</TableCell>
                     <TableCell>{recinto.ubicacion}</TableCell>
                     <TableCell align="right">
@@ -315,7 +306,7 @@ export default function ArrendarRecinto() {
         </>
       )}
 
-      {/* --- VISTA 2: PAGO --- */}
+      {/* Vista Pago */}
       {viewState === "pagando" && arrendamientoDetails && (
         <PaymentComponent
           details={arrendamientoDetails}
@@ -324,7 +315,7 @@ export default function ArrendarRecinto() {
         />
       )}
 
-      {/* --- VISTA 3: CONFIRMACIÓN FINAL --- */}
+      {/* Vista Confirmación */}
       {viewState === "confirmado" && (
         <Alert severity="success" sx={{ marginTop: 3 }}>
           {mensajeConfirmacion}
@@ -338,13 +329,14 @@ export default function ArrendarRecinto() {
         </Alert>
       )}
 
-      {/* El Modal se renderiza siempre pero se muestra condicionalmente con su prop 'open' */}
+      {/* Modal de arriendo */}
       {recintoSeleccionado && (
         <ModalArriendo
           open={modalOpen}
           onClose={handleCloseModal}
           recinto={recintoSeleccionado}
           onConfirm={handleConfirmArrendamiento}
+          tipo={modalidad as "solitario" | "equipo"}
         />
       )}
     </Box>
