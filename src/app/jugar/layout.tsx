@@ -28,6 +28,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
     switch (text) {
       case "ARRENDAR":
         router.push("/jugar/arrendar");
+        console.log("ARRENDAR");
         break;
       case "MODIFICAR EQUIPO":
         alert("MODIFICAR EQUIPO");
