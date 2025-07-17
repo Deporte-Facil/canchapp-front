@@ -13,39 +13,29 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import { useState, ReactNode, useEffect } from "react";
+import { useState, ReactNode } from "react";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import DomainVerificationIcon from '@mui/icons-material/DomainVerification'; // Ícono para la nueva opción
 import { useRouter } from "next/navigation";
 import MenuIcon from "@mui/icons-material/Menu";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
+// Estructura para manejar los ítems del menú de forma más ordenada
+const menuItems = [
+  { text: "Registrar Recinto", icon: <InboxIcon />, path: "/gestion/recintos" },
+  { text: "Gestionar Reservas", icon: <DomainVerificationIcon />, path: "/gestion/reservas" },
+  // Puedes añadir más ítems aquí en el futuro
+];
+
 const Layout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
 
-  const handleDrawerButtonClick = (text: string) => {
-    switch (text) {
-      case "Registrar Recinto":
-        router.push("/gestion/recintos");
-        break;
-      case "COSA 2":
-        //router.push('/main/reports');
-        break;
-      case "COSA 3":
-
-        router.push("/main/students");
-        break;
-      case "COSA 4":
-        //router.push('/main/table');
-        break;
-      default:
-        break;
-    }
+  const handleDrawerButtonClick = (path: string) => {
+    router.push(path);
   };
-  const [state, setState] = useState({
-    left: false,
-  });
+
+  const [state, setState] = useState({ left: false });
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -57,29 +47,26 @@ const Layout = ({ children }: { children: ReactNode }) => {
       ) {
         return;
       }
-
       setState({ ...state, [anchor]: open });
     };
+
   const list = (anchor: Anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      sx={{ width: 250 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Registrar Recinto", "COSA 2", "COSA 3", "COSA 4"].map(
-          (text, index) => (
+        {menuItems.map((item) => (
             <ListItem
-              key={text}
+              key={item.text}
               disablePadding
-              onClick={() => handleDrawerButtonClick(text)}
+              onClick={() => handleDrawerButtonClick(item.path)}
             >
               <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.text} />
               </ListItemButton>
             </ListItem>
           )
@@ -87,6 +74,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
       </List>
     </Box>
   );
+  
   return (
     <>
       <AppBar position="fixed">
@@ -102,9 +90,8 @@ const Layout = ({ children }: { children: ReactNode }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Sistema de Seguimientos
+            Panel de Gestión
           </Typography>
-          <Button color="inherit">Cerrar sesión</Button>
           <Button onClick={() => router.push("/")} color="inherit">
             VOLVER AL PORTAL
           </Button>
@@ -117,11 +104,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
       >
         {list("left")}
       </Drawer>
-      <div style={{ paddingTop: "64px" }}>
-        {" "}
-        {/* Adjust paddingTop to match the height of the AppBar */}
-        <main style={{ flex: 1, padding: "20px" }}>{children}</main>
-      </div>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, mt: '64px' }}>
+        {children}
+      </Box>
     </>
   );
 };
