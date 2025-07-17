@@ -104,7 +104,7 @@ export default function ArrendarRecinto() {
   const [arrendamientoDetails, setArrendamientoDetails] = useState<any | null>(null);
   const [mensajeConfirmacion, setMensajeConfirmacion] = useState<string | null>(null);
 
-  const [currentUserId, setCurrentUserId] = useState<string | null>(TEST_USER_ID);
+  const [currentUserId, setCurrentUserId] = useState<string | null>("68794a39ba8ef84064766bac");
 
   // --- OBTENER DATOS DEL BACKEND ---
   useEffect(() => {

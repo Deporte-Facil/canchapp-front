@@ -23,7 +23,7 @@ type Anchor = "top" | "left" | "bottom" | "right";
 
 // Estructura para manejar los ítems del menú de forma más ordenada
 const menuItems = [
-  { text: "Registrar Recinto", icon: <InboxIcon />, path: "/gestion/recintos" },
+  { text: "Registrar Recinto", icon: <InboxIcon />, path: "/gestion/recintos/reservas" },
   { text: "Gestionar Reservas", icon: <DomainVerificationIcon />, path: "/gestion/reservas" },
   // Puedes añadir más ítems aquí en el futuro
 ];
