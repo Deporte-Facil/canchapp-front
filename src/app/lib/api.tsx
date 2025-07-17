@@ -2,10 +2,13 @@
 
 import axios from 'axios';
 
+// URL base de la API
+export const BASE_URL = 'http://localhost:4000/api';
+
 // 1. Se crea una instancia de axios con la configuración base.
 //    Esto evita que tengas que escribir la URL completa en cada petición.
 const apiClient = axios.create({
-  baseURL: 'http://localhost:3000/api', // La URL base de tu backend
+  baseURL: BASE_URL, // La URL base de tu backend
   headers: {
     'Content-Type': 'application/json',
   },
