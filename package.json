@@ -21,6 +21,7 @@
     "@mui/material": "^7.1.0",
     "@mui/material-nextjs": "^7.0.2",
     "@mui/x-date-pickers": "^8.2.0",
+    "axios": "^1.10.0",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "install": "^0.13.0",

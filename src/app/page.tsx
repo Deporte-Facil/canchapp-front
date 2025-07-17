@@ -42,7 +42,7 @@ export default function Home() {
         </Grid>
 
           <Card sx={{ boxShadow: 6 }}>
-            <CardActionArea onClick={() => router.push("/gestion")}>
+            <CardActionArea onClick={() => router.push("/gestion/recintos/reservas")}>
               <CardMedia
                 component="img"
                 height="600"
