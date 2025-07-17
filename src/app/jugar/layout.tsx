@@ -32,7 +32,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
         break;
       case "MODIFICAR EQUIPO":
         alert("MODIFICAR EQUIPO");
-        //router.push('/main/reports');
         break;
       case "GESTIÓN USUARIO":
         //alert("COSA 3")
